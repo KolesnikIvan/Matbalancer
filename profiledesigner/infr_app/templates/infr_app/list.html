@@ -1,0 +1,147 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <title>Objects :: Nominal parameters</title> 
+    </head> 
+    <body>
+        {% if obj == 'dns' %}
+            <hl>Номинальные параметры работы объектов разделения (сепарации) продукции скважин</hl> 
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>Наименование</th>
+                        <th>Тип объекта</th>
+                        <th>Мощность по под-ке жидкости</th>
+                        <th>Мощность по под-ке нефти</th>
+                        <th>Мощность по под-ке пластовой воды</th>
+                        <th>Мощность по перекачке жидкости</th>
+                        <th>Мощность по перекачке нефти</th>
+                        <th>Мощность по перекачке пластовой воды</th>
+                        <th>Остаточная обв-ть нефти</th>
+                        <th>Месторождение</th>
+                        <th>Комментарий</th>
+                    </tr>
+                    {% for ns in objs %}
+                        <tr> 
+                            <td> {{ ns.id }} </td> 
+                            <td> {{ ns.name }} </td> 
+                            <td> {{ ns.obj_type }} </td> 
+                            <td> {{ ns.liq_sep_pwr }} </td> 
+                            <td> {{ ns.oil_pmp_pwr }} </td> 
+                            <td> {{ ns.wat_sep_pwr }} </td> 
+                            <td> {{ ns.liq_pmp_pwr }} </td> 
+                            <td> {{ ns.oil_pmp_pwr }} </td> 
+                            <td> {{ ns.wat_pmp_pwr }} </td> 
+                            <td> {{ ns.wcut }} </td> 
+                            <td> {{ ns.field }} </td> 
+                            <td></td> 
+                        </tr> 
+                    {% endfor %}
+                </table>
+
+        {% elif obj == 'kns' %}
+            <hl>Номинальные параметры работы объектов закачки пластовой воды</hl> 
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>Наименование</th>
+                        <th>Тип объекта</th>
+                        <th>Мощность насосов ППД</th>
+                        <th>Мощность источника воды</th>
+                        <th>Месторождение</th>
+                        <th>Комментарий</th>
+                    </tr>
+                    {% for ns in objs %}
+                        <tr> 
+                            <td> {{ ns.id }} </td> 
+                            <td> {{ ns.name }} </td> 
+                            <td> {{ ns.obj_type }} </td> 
+                            <td> {{ ns.wat_pmp_pwr }} </td> 
+                            <td> {{ ns.wat_src_dbt }} </td> 
+                            <td> {{ ns.field }} </td> 
+                            <td></td> 
+                        </tr> 
+                    {% endfor %}
+                </table>
+        {% elif obj == 'pad' %}
+            <hl>Фактические параметры работы кустов скважин</hl>
+                <table>
+                    <tr>
+                        <th>id</th>
+                        <th>Наименование</th>
+                        <th>Месторождение</th>
+                        <th>Дебит нефти</th>
+                        <th>Дебит жидкости</th>
+                        <th>Дебит газа</th>
+                        <th>Приемистость</th>
+                        <th>Комментарий</th>
+                    </tr>
+                    {% for ns in objs %}
+                        <tr> 
+                            <td> {{ ns.id }} </td> 
+                            <td> {{ ns.name }} </td> 
+                            <td> {{ ns.field }} </td> 
+                            <td> {{ ns.oil_fact }} </td> 
+                            <td> {{ ns.liq_fact }} </td> 
+                            <td> {{ ns.gas_fact }} </td> 
+                            <td> {{ ns.fld_fact }} </td> 
+                            <td></td> 
+                        </tr> 
+                    {% endfor %}
+                </table>             
+        {% elif obj == 'well' %}
+            <hl>Фактические параметры работы скважин</hl>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>Наименование</th>
+                    <th>Куст</th>
+                    <th>Назначение</th>
+                    <th>Дебит нефти</th>
+                    <th>Дебит жидкости</th>
+                    <th>Дебит газа</th>
+                    <th>Приемистость</th>
+                    <th>Комментарий</th>
+                </tr>
+                {% for ns in objs %}
+                    <tr> 
+                        <td> {{ ns.id }} </td> 
+                        <td> {{ ns.name }} </td> 
+                        <td> {{ ns.pad }} </td> 
+                        <td> {{ ns.dest }} </td> 
+                        <td> {{ ns.oil_fact }} </td> 
+                        <td> {{ ns.liq_fact }} </td> 
+                        <td> {{ ns.gas_fact }} </td> 
+                        <td> {{ ns.fld_fact }} </td> 
+                        <td></td> 
+                    </tr> 
+                {% endfor %}
+            </table> 
+        {% elif obj == 'prognose' %}
+            <hl>Прогноз добычи/закачки</hl>
+            <table>
+                <tr>
+                    <th>Дата</th>
+                    <th>Месторождение</th>
+                    <th>Добыча жидкости</th>
+                    <th>Добыча нефти</th>
+                    <th>Добыча газа</th>
+                    <th>Закачка воды</th>
+                    <th>Комментарий</th>
+                </tr>
+                {% for ns in objs %}
+                    <tr> 
+                        <td> {{ ns.date_pt }} </td> 
+                        <td> {{ ns.id_filed }} </td> 
+                        <td> {{ ns.liquid }} </td> 
+                        <td> {{ ns.oil }} </td> 
+                        <td> {{ ns.gas }} </td> 
+                        <td> {{ ns.flood }} </td> 
+                        <td></td> 
+                    </tr> 
+                {% endfor %}
+            </table>             
+        {% endif %}    
+    </body> 
+</html> 
