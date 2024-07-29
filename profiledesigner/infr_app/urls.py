@@ -17,15 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import index, list_dns, list_kns, list_objects_nominal_parameters, list_pads, list_wells, main_menu, show_prognose
+from .views import SeparationObjectCreateView, list_objects_nominal_parameters, main_menu
 
 urlpatterns = [
-    # path('', index),
-    # path('dns', list_dns),
-    # path('kns', list_kns),
-    # path('pad', list_pads),
-    # path('well', list_wells),
-    # path('prognose', show_prognose),
-    path('main', main_menu),
-    path('<str:obj_>/', list_objects_nominal_parameters),
+    path('main', main_menu, name='menu'),
+    path('<str:obj_>/', list_objects_nominal_parameters, name='nominal_params'),
+    path('dns/add', SeparationObjectCreateView.as_view(), name='add_dns'),
 ]
